@@ -28,7 +28,7 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 <h1>摄影师人格测试</h1>
 <div id="quiz">
 <div class="card">
-<div class="progress">问题 <span id="c">1</span> / 24</div>
+<div class="progress">问题 <span id="c">1</span> / 15</div>
 <div class="question" id="q"></div>
 <div class="options" id="o"></div>
 </div>
@@ -40,6 +40,7 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 </div>
 <script>
 var qs=[],ts=[],a=[],idx=0;
+var dims = ['构图','器材','技术','出片','烧钱','社交','后期','原创','扫街','人像','风光','街拍','器材知识','实战','键摄'];
 load();
 function load(){
 fetch('data/questions.json').then(r=>r.json()).then(function(d){qs=d;loadTypes()})
@@ -62,25 +63,35 @@ div.onclick=function(){a[idx]=j;render()};
 el.appendChild(div);
 }
 document.getElementById('b').disabled=a[idx]===undefined;
-document.getElementById('b').innerText=idx<23?'下一题':'看结果';
+document.getElementById('b').innerText=idx<14?'下一题':'看结果';
 }
 function prev(){if(idx>0){idx--;render()}}
-function next(){if(idx<23){idx++;render()}else{show()}}
+function next(){if(idx<14){idx++;render()}else{show()}}
 function show(){
-var sc={};
-for(var i=0;i<a.length;i++){
+// Build user 15-dim vector
+var userVec = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+for(var i=0;i<qs.length;i++){
 if(a[i]!==undefined){
 var opt=qs[i].options[a[i]];
-if(opt&&opt.scoreType){
-sc[opt.scoreType]=(sc[opt.scoreType]||0)+1;
+if(opt.dim && opt.score){
+var di = dims.indexOf(opt.dim);
+if(di>=0)userVec[di] += opt.score;
 }
 }
 }
-var best=0,res=ts[0];
-for(var k in sc){
-if(sc[k]>best){best=sc[k];res=ts.find(function(t){return t.shortDesc===k})||ts[0]}
+// Calculate Manhattan distance to each type
+var bestDist=99999,bestType=ts[0];
+for(var t=0;t<ts.length;t++){
+var tv = ts[t].dimensions||{};
+var dist=0;
+for(var d=0;d<15;d++){
+var typeScore = tv[dims[d]]||50;
+var userScore = userVec[d];
+dist += Math.abs(typeScore - userScore);
 }
-document.getElementById('quiz').innerHTML='<div class="card result"><h2 style="color:var(--accent)">'+res.name+'</h2><p>'+res.fullDesc+'</p><div style="background:#ffeaa7;color:#333;padding:16px;border-radius:4px;margin:16px 0">'+(res.diary||'')+'</div><div style="background:#252525;padding:16px;border-radius:12px;margin:16px 0;border:1px solid var(--accent)"><div style="color:var(--accent)">'+res.camera+'</div><div style="color:var(--muted);font-style:italic">'+res.cameraRoast+'</div></div><button class="btn" onclick="location.reload()">再测一次</button></div>';
+if(dist<bestDist){bestDist=dist;bestType=ts[t]}
+}
+document.getElementById('quiz').innerHTML='<div class="card result"><h2 style="color:var(--accent)">'+bestType.name+'</h2><p>'+bestType.fullDesc+'</p><div style="background:#ffeaa7;color:#333;padding:16px;border-radius:4px;margin:16px 0">'+(bestType.diary||'')+'</div><div style="background:#252525;padding:16px;border-radius:12px;margin:16px 0;border:1px solid var(--accent)"><div style="color:var(--accent)">'+bestType.camera+'</div><div style="color:var(--muted);font-style:italic">'+bestType.cameraRoast+'</div></div><button class="btn" onclick="location.reload()">再测一次</button></div>';
 }
 </script>
 </body>

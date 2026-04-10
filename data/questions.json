@@ -1,24 +1,27 @@
 [
   {
     "id": 1,
-    "isRoast": true,
     "question": "你的电脑硬盘里什么最多？",
     "options": [
       {
         "text": "未修的RAW和废片",
-        "scoreType": "拖延"
+        "dim": "构图",
+        "score": 1
       },
       {
         "text": "LR预设和调色lut",
-        "scoreType": "器材党"
+        "dim": "构图",
+        "score": 1
       },
       {
         "text": "摄影教程视频",
-        "scoreType": "学习"
+        "dim": "构图",
+        "score": 1
       },
       {
         "text": "表情包和 memes",
-        "scoreType": "自嘲"
+        "dim": "构图",
+        "score": 1
       }
     ]
   },
@@ -28,19 +31,23 @@
     "options": [
       {
         "text": "眼神里的情绪",
-        "scoreType": "portrait"
+        "dim": "器材",
+        "score": 1
       },
       {
         "text": "穿搭和场景搭配",
-        "scoreType": "fashion"
+        "dim": "器材",
+        "score": 1
       },
       {
         "text": "当下的故事感",
-        "scoreType": "documentary"
+        "dim": "器材",
+        "score": 1
       },
       {
         "text": "姿态和线条",
-        "scoreType": "minimalist"
+        "dim": "器材",
+        "score": 1
       }
     ]
   },
@@ -50,42 +57,49 @@
     "options": [
       {
         "text": "几小时算啥，等一天都行",
-        "scoreType": "wildlife"
+        "dim": "技术",
+        "score": 1
       },
       {
         "text": "等光线也就几分钟",
-        "scoreType": "street"
+        "dim": "技术",
+        "score": 1
       },
       {
         "text": "不愿意等，现成最好",
-        "scoreType": "documentary"
+        "dim": "技术",
+        "score": 1
       },
       {
         "text": "看心情，有时候一等几小时",
-        "scoreType": "landscape"
+        "dim": "技术",
+        "score": 1
       }
     ]
   },
   {
     "id": 4,
-    "isRoast": true,
     "question": "你朋友圈发片后收到最多的评论是？",
     "options": [
       {
         "text": "拍得不如我手机",
-        "scoreType": "扎心"
+        "dim": "出片",
+        "score": 1
       },
       {
         "text": "哇这相机真专业！",
-        "scoreType": "器材党"
+        "dim": "出片",
+        "score": 1
       },
       {
         "text": "求修图参数",
-        "scoreType": "社交"
+        "dim": "出片",
+        "score": 1
       },
       {
         "text": "......(已读不回)",
-        "scoreType": "高冷"
+        "dim": "出片",
+        "score": 1
       }
     ]
   },
@@ -95,42 +109,49 @@
     "options": [
       {
         "text": "三脚架+滤镜系统",
-        "scoreType": "landscape"
+        "dim": "烧钱",
+        "score": 1
       },
       {
         "text": "长焦镜头打鸟",
-        "scoreType": "wildlife"
+        "dim": "烧钱",
+        "score": 1
       },
       {
         "text": "广角镜头收全景",
-        "scoreType": "fineArt"
+        "dim": "烧钱",
+        "score": 1
       },
       {
         "text": "什么镜头都行",
-        "scoreType": "street"
+        "dim": "烧钱",
+        "score": 1
       }
     ]
   },
   {
     "id": 6,
-    "isRoast": true,
     "question": "你最常被亲戚问什么？",
     "options": [
       {
         "text": "这相机多少钱？",
-        "scoreType": "器材党"
+        "dim": "社交",
+        "score": 1
       },
       {
         "text": "帮我孙女拍个满月照呗",
-        "scoreType": "社交"
+        "dim": "社交",
+        "score": 1
       },
       {
         "text": "你怎么不去考公务员",
-        "scoreType": "实战"
+        "dim": "社交",
+        "score": 1
       },
       {
         "text": "这是相机？能打电话吗",
-        "scoreType": "手机党"
+        "dim": "社交",
+        "score": 1
       }
     ]
   },
@@ -140,19 +161,23 @@
     "options": [
       {
         "text": "设计师或艺术家",
-        "scoreType": "fineArt"
+        "dim": "后期",
+        "score": 1
       },
       {
         "text": "记者或纪录片导演",
-        "scoreType": "documentary"
+        "dim": "后期",
+        "score": 1
       },
       {
         "text": "旅行博主",
-        "scoreType": "landscape"
+        "dim": "后期",
+        "score": 1
       },
       {
         "text": "策展人或画廊主",
-        "scoreType": "minimalist"
+        "dim": "后期",
+        "score": 1
       }
     ]
   },
@@ -162,19 +187,23 @@
     "options": [
       {
         "text": "干净简单的构图",
-        "scoreType": "minimalist"
+        "dim": "原创",
+        "score": 1
       },
       {
         "text": "一个有趣的人",
-        "scoreType": "portrait"
+        "dim": "原创",
+        "score": 1
       },
       {
         "text": "等待完美光线",
-        "scoreType": "landscape"
+        "dim": "原创",
+        "score": 1
       },
       {
         "text": "决定性的瞬间",
-        "scoreType": "street"
+        "dim": "原创",
+        "score": 1
       }
     ]
   },
@@ -184,65 +213,75 @@
     "options": [
       {
         "text": "独自一人",
-        "scoreType": "minimalist"
+        "dim": "扫街",
+        "score": 1
       },
       {
         "text": "专业模特",
-        "scoreType": "fashion"
+        "dim": "扫街",
+        "score": 1
       },
       {
         "text": "不认识的路人",
-        "scoreType": "street"
+        "dim": "扫街",
+        "score": 1
       },
       {
         "text": "熟悉的朋友",
-        "scoreType": "portrait"
+        "dim": "扫街",
+        "score": 1
       }
     ]
   },
   {
     "id": 10,
-    "isRoast": true,
     "question": "修图修到凌晨三点你的内心OS是？",
     "options": [
       {
         "text": "我怎么又浪费了一晚上",
-        "scoreType": "自嘲"
+        "dim": "人像",
+        "score": 1
       },
       {
         "text": "这图拯救一下还能发",
-        "scoreType": "执念"
+        "dim": "人像",
+        "score": 1
       },
       {
         "text": "算了，毁灭吧，RAW在哪",
-        "scoreType": "弃疗"
+        "dim": "人像",
+        "score": 1
       },
       {
         "text": "明天再修，我先刷会儿手机",
-        "scoreType": "拖延"
+        "dim": "人像",
+        "score": 1
       }
     ]
   },
   {
     "id": 11,
-    "isRoast": true,
     "question": "你买相机时家人说什么？",
     "options": [
       {
         "text": "买这破玩意儿不如买辆车",
-        "scoreType": "务实"
+        "dim": "风光",
+        "score": 1
       },
       {
         "text": "你会拍吗就买",
-        "scoreType": "质疑"
+        "dim": "风光",
+        "score": 1
       },
       {
         "text": "又要吃土了是吧",
-        "scoreType": "器材党"
+        "dim": "风光",
+        "score": 1
       },
       {
         "text": "......(默认已读)",
-        "scoreType": "高冷"
+        "dim": "风光",
+        "score": 1
       }
     ]
   },
@@ -252,19 +291,23 @@
     "options": [
       {
         "text": "不发，自己留着",
-        "scoreType": "minimalist"
+        "dim": "街拍",
+        "score": 1
       },
       {
         "text": "发，必须发九宫格",
-        "scoreType": "fashion"
+        "dim": "街拍",
+        "score": 1
       },
       {
         "text": "偶尔发，但会写一大段故事",
-        "scoreType": "documentary"
+        "dim": "街拍",
+        "score": 1
       },
       {
         "text": "发不发看心情",
-        "scoreType": "street"
+        "dim": "街拍",
+        "score": 1
       }
     ]
   },
@@ -274,19 +317,23 @@
     "options": [
       {
         "text": "怎么找到自己的风格",
-        "scoreType": "fineArt"
+        "dim": "器材知识",
+        "score": 1
       },
       {
         "text": "技术不够，无法实现想法",
-        "scoreType": "landscape"
+        "dim": "器材知识",
+        "score": 1
       },
       {
         "text": "没时间出去拍",
-        "scoreType": "documentary"
+        "dim": "器材知识",
+        "score": 1
       },
       {
         "text": "器材党太烦了",
-        "scoreType": "minimalist"
+        "dim": "器材知识",
+        "score": 1
       }
     ]
   },
@@ -296,243 +343,49 @@
     "options": [
       {
         "text": "光",
-        "scoreType": "landscape"
+        "dim": "实战",
+        "score": 1
       },
       {
         "text": "瞬间",
-        "scoreType": "street"
+        "dim": "实战",
+        "score": 1
       },
       {
         "text": "情绪",
-        "scoreType": "portrait"
+        "dim": "实战",
+        "score": 1
       },
       {
         "text": "表达",
-        "scoreType": "fineArt"
+        "dim": "实战",
+        "score": 1
       }
     ]
   },
   {
     "id": 15,
-    "isRoast": true,
     "question": "你最怕别人说什么？",
     "options": [
       {
         "text": "你拍这个有什么用",
-        "scoreType": "扎心"
+        "dim": "键摄",
+        "score": 1
       },
       {
         "text": "你就是三分钟热度",
-        "scoreType": "质疑"
+        "dim": "键摄",
+        "score": 1
       },
       {
         "text": "手机拍拍就行了",
-        "scoreType": "手机党"
+        "dim": "键摄",
+        "score": 1
       },
       {
         "text": "帮我拍婚纱照呗不收费吧",
-        "scoreType": "社交"
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "question": "看到别人的精彩照片你会？",
-    "options": [
-      {
-        "text": "分析人家怎么拍的",
-        "scoreType": "fashion"
-      },
-      {
-        "text": "收藏，然后忘了",
-        "scoreType": "minimalist"
-      },
-      {
-        "text": "反思自己为什么拍不到",
-        "scoreType": "documentary"
-      },
-      {
-        "text": "膜拜大佬",
-        "scoreType": "wildlife"
-      }
-    ]
-  },
-  {
-    "id": 17,
-    "question": "你摄影的终极目标是？",
-    "options": [
-      {
-        "text": "举办个人展览",
-        "scoreType": "fineArt"
-      },
-      {
-        "text": "成为知名商业摄影师",
-        "scoreType": "fashion"
-      },
-      {
-        "text": "记录时代，影响社会",
-        "scoreType": "documentary"
-      },
-      {
-        "text": "没有目标，享受就好",
-        "scoreType": "street"
-      }
-    ]
-  },
-  {
-    "id": 18,
-    "question": "碰到一个超棒的瞬间但没带相机，你会？",
-    "options": [
-      {
-        "text": "用手机拍一张，回家后悔",
-        "scoreType": "documentary"
-      },
-      {
-        "text": "记下位置，明天再来",
-        "scoreType": "landscape"
-      },
-      {
-        "text": "懊恼一会，继续逛",
-        "scoreType": "street"
-      },
-      {
-        "text": "算了，反正也抓不住",
-        "scoreType": "minimalist"
-      }
-    ]
-  },
-  {
-    "id": 19,
-    "question": "后期修图时你第一反应是？",
-    "options": [
-      {
-        "text": "先降饱和度，去掉杂色",
-        "scoreType": "minimalist"
-      },
-      {
-        "text": "疯狂拉对比，压暗部",
-        "scoreType": "fineArt"
-      },
-      {
-        "text": "磨皮调色，加柔光",
-        "scoreType": "portrait"
-      },
-      {
-        "text": "轻微调整，还原现场",
-        "scoreType": "landscape"
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "isRoast": true,
-    "question": "你买完新镜头后最常说什么？",
-    "options": [
-      {
-        "text": "这就是最后一颗",
-        "scoreType": "自嘲"
-      },
-      {
-        "text": "拍不好不是镜头问题",
-        "scoreType": "执念"
-      },
-      {
-        "text": "我下次一定好好拍",
-        "scoreType": "拖延"
-      },
-      {
-        "text": "这镜头真香",
-        "scoreType": "器材党"
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "question": "你更关注相机的什么参数？",
-    "options": [
-      {
-        "text": "像素和动态范围",
-        "scoreType": "landscape"
-      },
-      {
-        "text": "对焦速度和连拍",
-        "scoreType": "wildlife"
-      },
-      {
-        "text": "大光圈虚化效果",
-        "scoreType": "portrait"
-      },
-      {
-        "text": "轻便程度",
-        "scoreType": "minimalist"
-      }
-    ]
-  },
-  {
-    "id": 22,
-    "question": "你的相机包通常装了什么？",
-    "options": [
-      {
-        "text": "一机一镜，轻装上阵",
-        "scoreType": "minimalist"
-      },
-      {
-        "text": "大三元+三脚架+滤镜",
-        "scoreType": "landscape"
-      },
-      {
-        "text": "85mm人像头+反光板",
-        "scoreType": "portrait"
-      },
-      {
-        "text": "35mm/50mm挂机，走哪拍哪",
-        "scoreType": "street"
-      }
-    ]
-  },
-  {
-    "id": 23,
-    "isRoast": true,
-    "question": "别人看到你拍照时的第一反应？",
-    "options": [
-      {
-        "text": "专业！帮我拍一张",
-        "scoreType": "社交"
-      },
-      {
-        "text": "这相机多少钱",
-        "scoreType": "器材党"
-      },
-      {
-        "text": "好装",
-        "scoreType": "扎心"
-      },
-      {
-        "text": "哦",
-        "scoreType": "高冷"
-      }
-    ]
-  },
-  {
-    "id": 24,
-    "isRoast": true,
-    "question": "拍砸了，你第一时间甩锅给谁？",
-    "options": [
-      {
-        "text": "天气不好，光线垃圾",
-        "scoreType": "务实"
-      },
-      {
-        "text": "模特不会摆，浪费我时间",
-        "scoreType": "执念"
-      },
-      {
-        "text": "相机对焦太慢",
-        "scoreType": "器材党"
-      },
-      {
-        "text": "是我喝了酒手抖，不怪技术",
-        "scoreType": "自嘲"
+        "dim": "键摄",
+        "score": 1
       }
     ]
   }
