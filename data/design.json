@@ -1,0 +1,58 @@
+{
+  "name": "摄影师人格测试视觉设计",
+  "version": "1.0",
+  "colors": {
+    "primary": {
+      "bg": "#0d0d0d",
+      "bgSecondary": "#1a1a1a",
+      "bgCard": "#141414",
+      "bgCardHover": "#1e1e1e"
+    },
+    "accent": {
+      "orange": "#ff6b35",
+      "orangeLight": "#ff8c5a",
+      "orangeDark": "#e55a2b",
+      "orangeGlow": "rgba(255, 107, 53, 0.3)"
+    },
+    "text": {
+      "primary": "#ffffff",
+      "secondary": "#b0b0b0",
+      "muted": "#666666"
+    },
+    "border": {
+      "default": "#2a2a2a",
+      "highlight": "#ff6b35"
+    },
+    "chart": {
+      "fill": "rgba(255, 107, 53, 0.2)",
+      "stroke": "#ff6b35",
+      "grid": "#333333"
+    }
+  },
+  "typography": {
+    "fontFamily": "'Noto Sans SC', -apple-system, sans-serif",
+    "heading": "700",
+    "body": "400"
+  },
+  "card": {
+    "width": "380px",
+    "padding": "32px",
+    "borderRadius": "20px",
+    "shadow": "0 20px 60px rgba(0, 0, 0, 0.5)"
+  },
+  "structure": {
+    "avatar": {
+      "size": "120px",
+      "borderRadius": "50%"
+    },
+    "tag": {
+      "padding": "8px 16px",
+      "borderRadius": "20px",
+      "fontSize": "14px"
+    },
+    "radar": {
+      "size": "200px",
+      "levels": 5
+    }
+  }
+}

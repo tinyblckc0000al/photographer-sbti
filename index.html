@@ -6,85 +6,219 @@
   <title>摄影师人格测试</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0d0d0d; color: #fff; min-height: 100vh; }
+    body { 
+      font-family: 'Noto Sans SC', -apple-system, sans-serif; 
+      background: #0d0d0d; 
+      color: #fff; 
+      min-height: 100vh; 
+    }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    h1 { text-align: center; margin-bottom: 10px; font-size: 24px; }
+    h1 { text-align: center; margin-bottom: 10px; font-size: 28px; font-weight: 700; }
     .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 14px; }
-    .card { background: #1a1a1a; border-radius: 16px; padding: 24px; margin-bottom: 20px; border: 1px solid #333; }
+    
+    /* Card */
+    .card { 
+      background: #141414; 
+      border-radius: 20px; 
+      padding: 32px; 
+      margin-bottom: 20px; 
+      border: 1px solid #2a2a2a;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
     .progress { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
-    .question { font-size: 18px; margin-bottom: 20px; line-height: 1.6; }
+    .progress-bar { 
+      height: 4px; 
+      background: #2a2a2a; 
+      border-radius: 2px; 
+      margin: 16px 0;
+      overflow: hidden;
+    }
+    .progress-fill { 
+      height: 100%; 
+      background: linear-gradient(90deg, #ff6b35, #ff8c5a); 
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    
+    .question { font-size: 20px; margin-bottom: 24px; line-height: 1.6; font-weight: 500; }
     .options { display: flex; flex-direction: column; gap: 12px; }
-    .option { background: #252525; padding: 16px; border-radius: 12px; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
-    .option:hover { border-color: #ff6b35; background: #2a2a2a; }
-    .option.selected { background: #ff6b35; }
-    .btn { width: 100%; padding: 16px; background: #ff6b35; color: white; border: none; border-radius: 12px; font-size: 16px; cursor: pointer; }
-    .btn:disabled { background: #444; cursor: not-allowed; }
+    .option { 
+      background: #1a1a1a; 
+      padding: 18px 20px; 
+      border-radius: 14px; 
+      cursor: pointer; 
+      transition: all 0.2s; 
+      border: 2px solid transparent;
+      font-size: 16px;
+    }
+    .option:hover { 
+      border-color: #ff6b35; 
+      background: #1e1e1e; 
+    }
+    .option.selected { 
+      background: #ff6b35; 
+      border-color: #ff6b35;
+      color: #fff;
+    }
+    
+    .btn { 
+      width: 100%; 
+      padding: 18px; 
+      background: linear-gradient(135deg, #ff6b35, #e55a2b); 
+      color: white; 
+      border: none; 
+      border-radius: 14px; 
+      font-size: 17px; 
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3); }
+    .btn:disabled { background: #444; cursor: not-allowed; transform: none; box-shadow: none; }
+    
+    /* Result */
     .result-card { text-align: center; padding: 30px; }
-    .result-title { font-size: 28px; color: #ff6b35; margin-bottom: 16px; }
-    .result-desc { font-size: 16px; line-height: 1.8; color: #aaa; margin-bottom: 24px; }
-    .result-camera { background: #252525; padding: 24px; border-radius: 12px; margin: 20px 0; border: 1px solid #ff6b35; }
-    .camera-name { font-size: 24px; color: #ff6b35; margin-bottom: 8px; }
+    .result-title { font-size: 32px; color: #ff6b35; margin-bottom: 8px; font-weight: 700; }
+    .result-subtitle { color: #666; margin-bottom: 20px; font-size: 16px; }
+    .result-desc { font-size: 16px; line-height: 1.8; color: #aaa; margin-bottom: 24px; text-align: left; }
+    
+    .result-camera { 
+      background: #1a1a1a; 
+      padding: 24px; 
+      border-radius: 16px; 
+      margin: 20px 0; 
+      border: 1px solid #ff6b35;
+    }
+    .camera-label { font-size: 12px; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .camera-name { font-size: 22px; color: #ff6b35; margin-bottom: 8px; font-weight: 600; }
     .camera-roast { font-size: 15px; color: #888; font-style: italic; line-height: 1.6; }
+    
+    /* Radar Chart */
+    .radar-container { 
+      margin: 30px 0; 
+      display: flex; 
+      justify-content: center;
+    }
+    .radar-chart { width: 280px; height: 280px; }
+    
+    /* Dimension Bars */
+    .dimensions { text-align: left; margin-top: 30px; }
+    .dimensions-title { font-size: 16px; color: #ff6b35; margin-bottom: 16px; font-weight: 600; }
+    .dim-item { margin-bottom: 12px; }
+    .dim-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; color: #b0b0b0; }
+    .dim-bar { height: 8px; background: #2a2a2a; border-radius: 4px; overflow: hidden; }
+    .dim-fill { height: 100%; background: linear-gradient(90deg, #ff6b35, #ff8c5a); border-radius: 4px; transition: width 0.5s ease; }
+    
+    /* Tag */
+    .tag { 
+      display: inline-block; 
+      padding: 8px 16px; 
+      background: rgba(255, 107, 53, 0.2); 
+      border-radius: 20px; 
+      font-size: 14px;
+      color: #ff8c5a;
+      margin-bottom: 16px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>📷 摄影师人格测试</h1>
-    <p class="subtitle">SBTI 摄影师版 · 看看你的镜头人格</p>
+    <p class="subtitle">SBTI 摄影师版 · 15维度精准匹配</p>
+    
     <div id="quiz">
       <div class="card">
-        <div class="progress">问题 <span id="current">1</span> / <span id="total">10</span></div>
+        <div class="progress">问题 <span id="current">1</span> / <span id="total">15</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         <div class="question" id="question"></div>
         <div class="options" id="options"></div>
       </div>
       <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>下一题</button>
     </div>
+    
     <div id="result" style="display:none"></div>
   </div>
+
   <script>
-    const questions = [
-      { q: '你喜欢在什么时间段拍摄？', o: ['清晨/黄昏柔光', '正午强光', '夜晚灯火', '看情况'] },
-      { q: '外出带多少设备？', o: ['一个机身+镜头', '专业背包全套', '几件轻便装备', '看主题灵活'] },
-      { q: '什么场景让你想按快门？', o: ['几何/极简', '街头瞬间', '自然风光', '人物情绪'] },
-      { q: '最在意照片的哪个方面？', o: ['构图形式', '故事纪实', '情感表达', '技术完美'] },
-      { q: '后期修图风格？', o: ['极简冷淡', '真实质感', '胶片复古', '电影感'] },
-      { q: '买相机最看重什么？', o: ['便携', '画质', '颜值', '品牌'] },
-      { q: '最常拍什么？', o: ['建筑街道', '人物', '风景', '日常'] },
-      { q: '朋友让你拍照，你会？', o: ['直接答应', '选择性拍', '找理由拒', '看关系'] },
-      { q: '看到别人用手机拍照.', o: ['无所谓', '想教他', '暗自嫌弃', '跟风'] },
-      { q: '拍久了感觉？', o: ['还想拍', '累但值', '麻木', '想换设备'] }
-    ];
-    const types = {
-      minimalist: { name: '极简主义摄影师', desc: '追求简洁纯粹，善于发现日常中的秩序之美。', camera: 'Ricoh GR III', roast: '理财产品实锤了，停产比发售快，但你真的买得到吗？' },
-      documentary: { name: '纪实摄影师', desc: '用镜头记录真实，捕捉生活中的瞬间与故事。', camera: 'Fujifilm X100VI', roast: '溢价比黄牛跑得还快，现在下单等到退休能拿到货。' },
-      portrait: { name: '人像摄影师', desc: '捕捉人物情绪与灵魂，挖掘内心世界。', camera: 'Sony A7M4', roast: '屏幕祖传黄绿屏，但没人Care，因为你是拍人的。' },
-      landscape: { name: '风光摄影师', desc: '追逐光影与自然，用镜头诠释大自然的壮美。', camera: 'Canon R5', roast: '散热灾难，但拍风光谁会让你连续拍8K 40分钟啊？' },
-      street: { name: '街头摄影师', desc: '在城市中寻找瞬间，用快门捕捉城市的脉动。', camera: 'Leica Q3', roast: '德味满满，价格也满满，花钱买标.jpg' },
-      fashion: { name: '时尚摄影师', desc: '引领潮流，创造视觉冲击力的时尚大片。', camera: 'Hasselblad X2D', roast: '北欧性冷淡风，钱包也性冷淡了。' },
-      fineArt: { name: '艺术摄影师', desc: '将摄影视为艺术创作，表达个人审美与理念。', camera: 'Phase One', roast: '一套辆车，你确认这是相机不是理财产品？' },
-      wildlife: { name: '野生动物摄影师', desc: '在野外等待时机，捕捉动物最自然的状态。', camera: 'Nikon Z9', roast: '打鸟神器，但你拍的是楼下的麻雀。' }
-    };
-    const scores = {};
-    Object.keys(types).forEach(k => scores[k] = 0);
-    const map = [
-      [0,0,0,0, 1,1,1,1], // minimalist
-      [2,1,2,1, 2,2,2,1], // documentary
-      [1,2,1,0, 1,0,1,2], // portrait
-      [2,1,2,2, 1,2,1,1], // landscape
-      [1,2,1,2, 2,1,2,1], // street
-      [0,1,1,2, 1,2,0,2], // fashion
-      [1,0,2,2, 0,1,1,1], // fineArt
-      [2,1,1,1, 2,1,2,1]  // wildlife
-    ];
-    let current = 0;
-    let answers = [];
+    // ===== 15 维度名称 =====
+    const DIMENSIONS = ['构图', '器材', '技术', '出片', '烧钱', '社交', '后期', '原创', '扫街', '人像', '风光', '街拍', '器材知识', '实战', '键盘'];
     
+    // ===== 题号 -> 维度映射 =====
+    const Q_TO_DIM = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+    
+    // ===== 选项分数 (L=1, M=2, H=3) =====
+    // 4个选项: [L, M, H, H] 或 [L, L, M, H] 等模式
+    const SCORE_PATTERN = [
+      [1,2,3,3], // Q1: minimalist
+      [1,3,2,2], // Q2: portrait
+      [1,2,3,2], // Q3: fineArt
+      [2,3,1,1], // Q4: documentary
+      [1,3,2,2], // Q5: fashion
+      [3,2,1,2], // Q6: portrait
+      [2,1,3,3], // Q7: fineArt
+      [3,2,1,2], // Q8: wildlife
+      [3,2,1,2], // Q9: landscape
+      [1,3,2,2], // Q10: minimalist
+      [3,2,1,1], // Q11: fineArt
+      [3,1,2,2], // Q12: landscape
+      [2,1,3,3], // Q13: fashion
+      [3,2,1,1], // Q14: fineArt
+      [1,3,2,2], // Q15: minimalist
+    ];
+    
+    // ===== 题目数据 (来自 questions.json) =====
+    const QUESTIONS = [
+      { q: "你拍照时最离不开什么？", o: ["干净简单的构图", "一个有趣的人", "等待完美光线", "决定性的瞬间"] },
+      { q: "你的相机包通常装了什么？", o: ["一机一镜，轻装上阵", "大三元+三脚架+滤镜", "85mm人像头+反光板", "35mm/50mm挂机，走哪拍哪"] },
+      { q: "后期修图时你第一反应是？", o: ["先降饱和度，去掉杂色", "疯狂拉对比，压暗部", "磨皮调色，加柔光", "轻微调整，还原现场"] },
+      { q: "碰到一个超棒的瞬间但没带相机，你会？", o: ["用手机拍一张，回家后悔", "记下位置，明天再来", "懊恼一会，继续逛", "算了，反正也抓不住"] },
+      { q: "你拍完照会发朋友圈吗？", o: ["不发，自己留着", "发，必须发九宫格", "偶尔发，但会写一大段故事", "发不发看心情"] },
+      { q: "你拍人像时最看重什么？", o: ["眼神里的情绪", "穿搭和场景搭配", "当下的故事感", "姿态和线条"] },
+      { q: "提到摄影你第一个想到的词是？", o: ["光", "瞬间", "情绪", "表达"] },
+      { q: "你愿意为了拍一张照片等多久？", o: ["几小时算啥，等一天都行", "等光线也就几分钟", "不愿意等，现成最好", "看心情，有时候一等几小时"] },
+      { q: "你更关注相机的什么参数？", o: ["像素和动态范围", "对焦速度和连拍", "大光圈虚化效果", "轻便程度"] },
+      { q: "你最喜欢和什么人一起拍照？", o: ["独自一人", "专业模特", "不认识的路人", "熟悉的朋友"] },
+      { q: "你摄影最大的困惑是？", o: ["怎么找到自己的风格", "技术不够，无法实现想法", "没时间出去拍", "器材党太烦了"] },
+      { q: "你拍风光时的标配是？", o: ["三脚架+滤镜系统", "长焦镜头打鸟", "广角镜头收全景", "什么镜头都行"] },
+      { q: "看到别人的精彩照片你会？", o: ["分析人家怎么拍的", "收藏，然后忘了", "反思自己为什么拍不到", "膜拜大佬"] },
+      { q: "你摄影的终极目标是？", o: ["举办个人展览", "成为知名商业摄影师", "记录时代，影响社会", "没有目标，享受就好"] },
+      { q: "如果不做摄影师，你会做什么？", o: ["设计师或艺术家", "记者或纪录片导演", "旅行博主", "策展人或画廊主"] }
+    ];
+    
+    // ===== 人格类型数据 (来自 types.json) =====
+    const TYPES = [
+      { id: 1, name: "键盘摄影师", shortDesc: "键摄天下无敌", fullDesc: "网上重拳出击，线下唯唯诺诺。论器材他能把索尼食堂骂出花，真要他按快门还不如让猩猩敲打字机——至少猩猩还能打出莎士比亚。", camera: "Sony A7IV", cameraRoast: "买来三年 shutter count 还没破千，倒是在 Dpreforum 发了 800 帖", dims: [20,85,15,10,90,5,10,5,10,15,20,5,95,5,100] },
+      { id: 2, name: "参数法师", shortDesc: "EXIF即正义", fullDesc: "他拍照前要花十分钟调参数，拍完后要花两小时研究 RAW 隐藏数据。ISO 64 还能往下拉？不拉升到 ISO 3200 都对不起这台机身。您是拍照还是做数学题？", camera: "Canon R5", cameraRoast: "所有固件更新必追，但拍了三年还是用的出厂预设", dims: [25,70,40,30,60,15,20,20,15,30,35,10,50,25,100] },
+      { id: 3, name: "直出党", shortDesc: "JPG就是正义", fullDesc: "JPEG直出，内存卡都快比他思考的时间长。什么 RAW 格式？什么后期？后期是对CCD的侮辱。他用实际行动证明：不会后期的摄影师就像不会ps的外卖小哥——只能等着被淘汰。", camera: "Fujifilm X-T30", cameraRoast: "胶片模拟是他唯一的「后期」技术", dims: [55,40,50,45,30,40,5,35,60,45,40,55,20,50,100] },
+      { id: 4, name: "器材党", shortDesc: "买最贵就是强", fullDesc: "他相机的价值比他拍的照片加起来都贵。机身要最新，镜头要最定，灯光要最闪。什么？你用小痰盂也能出大片？抱歉，他的 Leitz Summilux 不允许他承认这种事实。", camera: "Leica M11", cameraRoast: "快门声是比成片更贵的奢侈品", dims: [30,95,25,35,100,50,30,15,20,40,35,15,85,15,100] },
+      { id: 5, name: "手机摄影师", shortDesc: "扫码拍摄", fullDesc: "「摄影的本质是记录，不是器材。」这是他用 1 英寸传感器拍出油画感时的自我安慰。专业相机？不需要的。他的 iPhone Pro Max 足以打败你们这些器材党的自尊心。", camera: "iPhone 15 Pro Max", cameraRoast: "他发朋友圈的技术比您拍婚礼的技术还专业", dims: [65,10,50,55,5,80,60,45,75,50,45,70,5,60,100] },
+      { id: 6, name: "夕阳战神", shortDesc: "追光少年", fullDesc: "他的字典里没有「黄金时刻」——因为他只在那时候出门。夏天毒辣的光？不去。阴天忧郁的美？不拍。日出、日落、耶稣光，是他人生的三原色。其他时间他在修图。", camera: "Nikon Z8", cameraRoast: "他的行程表比天气预告还准，就为了那 18 分钟的 magic hour", dims: [45,75,70,75,70,20,85,40,10,25,85,5,60,65,100] },
+      { id: 7, name: "人像大师", shortDesc: "糖水yyds", fullDesc: "他的世界只有两种照片：妹子和不是妹子。什么构图？虚化拉满。什么背景？不存在。什么情绪？瓜子脸加微笑唇就够了。您这是在拍照还是在生产网红脸？", camera: "Sony A7C II", cameraRoast: "他拍十套图能发一年，发完还要问为什么没有女朋友", dims: [40,60,55,65,55,70,75,20,5,90,10,5,45,60,85] },
+      { id: 8, name: "扫街老炮", shortDesc: "决定性瞬间", fullDesc: "他不是在街拍，是在进行街头偷拍艺术。35mm 是他的人生，盲估对焦是他的信仰，路人惊恐的眼神是他最好的勋章。侵犯肖像权？不，这叫纪实摄影。", camera: "Ricoh GR III", cameraRoast: "他的照片比他的性格更「毒」", dims: [80,30,85,70,25,15,45,75,95,20,50,95,35,90,90] },
+      { id: 9, name: "风光巨师", shortDesc: "登高望远", fullDesc: "为了那张雪山日出，他能扛二十公斤器材爬海拔五千。什么工作？请假。什么天气？越恶劣越要去。您是摄影还是自虐？不过成片确实nb。", camera: "Sony A1", cameraRoast: "他的户外装备比您家当还贵", dims: [75,90,80,90,95,10,80,65,5,15,95,5,80,85,95] },
+      { id: 10, name: "野生摄影师", shortDesc: "啥都拍", fullDesc: "他的相册叫「随缘」——拍到啥发啥。婚礼也接，婚礼跟拍也接，产品图也拍，毕业证照也拍。只要给钱，没有他不拍的。艺术？商业？统称：赚钱。", camera: "Canon R6 II", cameraRoast: "他的快门声是客户的钱到账的声音", dims: [55,65,65,60,50,85,55,30,45,60,45,40,55,80,90] },
+      { id: 11, name: "器材考古学家", shortDesc: "老法师", fullDesc: "十年前的机身他觉得比现在的好，五十年前的镜头才是光学巅峰。现代相机？那是被营销惯坏的数码玩具。他的收藏比他的技术更有「价值」。", camera: "Pentax K-1", cameraRoast: "他的器材是用来供的，不是用来拍照的", dims: [35,80,45,40,75,25,25,30,30,35,40,35,95,30,100] },
+      { id: 12, name: "视频up主", shortDesc: "Vlog大法师", fullDesc: "摄影是他副业，剪视频是他主业，产出比人口普查还慢，但调色比玄学更玄。「参数不重要，感觉最重要」——然后发片五分钟，剪辑十小时。", camera: "Sony FX3", cameraRoast: "他的相机能拍电影，他的成片只能发b站", dims: [50,80,60,55,85,90,50,45,35,55,40,30,60,55,95] },
+      { id: 13, name: "神片马后炮", shortDesc: "我本可以", fullDesc: "每次看到别人的好片，他都要说「我之前也拍过类似的」「我那次就差一点点」。他的硬盘里全是「差一点」大作，他的嘴里全是「本可以」传说。", camera: "Fujifilm GFX 100S", cameraRoast: "他的嘴比他的硬盘更能出片", dims: [35,70,30,25,65,60,20,15,25,25,30,30,45,20,100] },
+      { id: 14, name: "摄影理论家", shortDesc: "看书比拍照多", fullDesc: "他的摄影书籍比他的照片多，他的收藏比他的实践多。纽摄读了三遍，布列松语录倒背如流，然并卵——出门还是只会 Auto 档。理论王者，实践青铜。", camera: "Hasselblad X2D", cameraRoast: "他的中画幅是用来压泡面的（不是", dims: [45,85,35,30,80,30,35,25,20,30,35,20,75,15,100] },
+      { id: 15, name: "人肉三脚架", shortDesc: "铁手无敌", fullDesc: "他是唯一一个不用三脚架也能长曝光三十秒的狠人。防抖？不存在的。手持 1/2 秒是他的基操，手抖是他的人生。他用实际行动证明：铁手才是最好的防抖。", camera: "Olympus OM-1", cameraRoast: "他的铁手比您的防抖更靠谱", dims: [50,45,70,55,40,30,40,50,50,45,65,45,40,65,100] }
+    ];
+    
+    // ===== 状态 =====
+    let current = 0;
+    let answers = new Array(15).fill(null);
+    
+    // ===== 渲染题目 =====
     function renderQuestion() {
       document.getElementById('current').textContent = current + 1;
-      const q = questions[current];
+      document.getElementById('progressFill').style.width = ((current + 1) / 15 * 100) + '%';
+      
+      const q = QUESTIONS[current];
       document.getElementById('question').textContent = q.q;
+      
       const opts = document.getElementById('options');
       opts.innerHTML = '';
+      
       q.o.forEach((txt, idx) => {
         const div = document.createElement('div');
         div.className = 'option' + (answers[current] === idx ? ' selected' : '');
@@ -92,47 +226,158 @@
         div.onclick = () => selectOption(idx);
         opts.appendChild(div);
       });
+      
       document.getElementById('nextBtn').disabled = answers[current] === undefined;
-      document.getElementById('nextBtn').textContent = current < 9 ? '下一题' : '看结果';
+      document.getElementById('nextBtn').textContent = current < 14 ? '下一题' : '看结果';
     }
     
+    // ===== 选择选项 =====
     function selectOption(idx) {
       answers[current] = idx;
       renderQuestion();
     }
     
+    // ===== 下一题 =====
     function nextQuestion() {
-      if (current < 9) { current++; renderQuestion(); }
-      else { showResult(); }
+      if (current < 14) {
+        current++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
     }
     
+    // ===== 计算曼哈顿距离 =====
+    function calculateManhattanDistance(userVector, typeDims) {
+      let distance = 0;
+      for (let i = 0; i < 15; i++) {
+        distance += Math.abs(userVector[i] - typeDims[i]);
+      }
+      return distance;
+    }
+    
+    // ===== 显示结果 =====
     function showResult() {
-      answers.forEach((ans, qid) => {
-        const typeScores = map.map((row, idx) => {
-          return row[qid] === ans ? 1 : 0; // 如果用户选了"理想答案"，该人格加1分
-        });
-        Object.keys(types).forEach((type, idx) => {
-          scores[type] += typeScores[idx];
-        });
+      // 构建用户向量 (每题选项 -> 维度分数)
+      const userVector = [];
+      for (let i = 0; i < 15; i++) {
+        const scorePattern = SCORE_PATTERN[i];
+        const userScore = scorePattern[answers[i]];
+        userVector.push(userScore);
+      }
+      
+      // 计算与每个人格的曼哈顿距离
+      let minDist = Infinity;
+      let matchedType = TYPES[0];
+      
+      TYPES.forEach(type => {
+        const dist = calculateManhattanDistance(userVector, type.dims);
+        if (dist < minDist) {
+          minDist = dist;
+          matchedType = type;
+        }
       });
-      let max = 0, result = 'minimalist';
-      Object.keys(scores).forEach(type => {
-        if (scores[type] > max) { max = scores[type]; result = type; }
-      });
-      const r = types[result];
+      
+      // 渲染结果
       document.getElementById('quiz').style.display = 'none';
-      document.getElementById('result').style.display = 'block';
-      document.getElementById('result').innerHTML = '<div class="card result-card">' +
-        '<div class="result-title">📷 ' + r.name + '</div>' +
-        '<div class="result-desc">' + r.desc + '</div>' +
-        '<div class="result-camera">' +
-          '<div class="camera-name">📷 ' + r.camera + '</div>' +
-          '<div class="camera-roast">"' + r.roast + '"</div>' +
-        '</div>' +
-        '<button class="btn" onclick="location.reload()">再测一次</button>' +
-      '</div>';
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      
+      // 生成雷达图 SVG
+      const radarSVG = generateRadarChart(matchedType.dims);
+      
+      // 生成维度进度条
+      let dimsHTML = '<div class="dimensions"><div class="dimensions-title">📊 维度分析</div>';
+      for (let i = 0; i < 15; i++) {
+        const pct = matchedType.dims[i];
+        dimsHTML += `
+          <div class="dim-item">
+            <div class="dim-label"><span>${DIMENSIONS[i]}</span><span>${pct}%</span></div>
+            <div class="dim-bar"><div class="dim-fill" style="width: ${pct}%"></div></div>
+          </div>
+        `;
+      }
+      dimsHTML += '</div>';
+      
+      resultDiv.innerHTML = `
+        <div class="card result-card">
+          <div class="tag">${matchedType.shortDesc}</div>
+          <div class="result-title">📷 ${matchedType.name}</div>
+          
+          <div class="radar-container">
+            ${radarSVG}
+          </div>
+          
+          <div class="result-camera">
+            <div class="camera-label">最佳伴侣</div>
+            <div class="camera-name">📷 ${matchedType.camera}</div>
+            <div class="camera-roast">"${matchedType.cameraRoast}"</div>
+          </div>
+          
+          <div class="result-desc">${matchedType.fullDesc}</div>
+          
+          ${dimsHTML}
+          
+          <button class="btn" onclick="location.reload()" style="margin-top: 30px;">再测一次</button>
+        </div>
+      `;
     }
     
+    // ===== 生成雷达图 SVG =====
+    function generateRadarChart(dims) {
+      const cx = 140, cy = 140, r = 100;
+      const points = [];
+      
+      // 计算15个顶点
+      for (let i = 0; i < 15; i++) {
+        const angle = (Math.PI * 2 * i / 15) - Math.PI / 2;
+        const value = dims[i] / 100;
+        const x = cx + r * value * Math.cos(angle);
+        const y = cy + r * value * Math.sin(angle);
+        points.push(`${x},${y}`);
+      }
+      
+      // 背景网格
+      let gridHTML = '';
+      for (let level = 1; level <= 5; level++) {
+        const levelR = r * level / 5;
+        let levelPoints = [];
+        for (let i = 0; i < 15; i++) {
+          const angle = (Math.PI * 2 * i / 15) - Math.PI / 2;
+          const x = cx + levelR * Math.cos(angle);
+          const y = cy + levelR * Math.sin(angle);
+          levelPoints.push(`${x},${y}`);
+        }
+        gridHTML += `<polygon points="${levelPoints.join(' ')}" fill="none" stroke="#333" stroke-width="1"/>`;
+      }
+      
+      // 轴线
+      let axisHTML = '';
+      for (let i = 0; i < 15; i++) {
+        const angle = (Math.PI * 2 * i / 15) - Math.PI / 2;
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+        axisHTML += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#333" stroke-width="1"/>`;
+      }
+      
+      // 数据多边形
+      const dataPolygon = `<polygon points="${points.join(' ')}" fill="rgba(255, 107, 53, 0.2)" stroke="#ff6b35" stroke-width="2"/>`;
+      
+      // 标签
+      let labelsHTML = '';
+      for (let i = 0; i < 15; i++) {
+        const angle = (Math.PI * 2 * i / 15) - Math.PI / 2;
+        const labelR = r + 20;
+        const x = cx + labelR * Math.cos(angle);
+        const y = cy + labelR * Math.sin(angle);
+        const anchor = x < cx ? 'end' : x > cx ? 'start' : 'middle';
+        labelsHTML += `<text x="${x}" y="${y}" fill="#b0b0b0" font-size="11" text-anchor="${anchor}" dominant-baseline="middle">${DIMENSIONS[i]}</text>`;
+      }
+      
+      return `<svg class="radar-chart" viewBox="0 0 280 280">${gridHTML}${axisHTML}${dataPolygon}${labelsHTML}</svg>`;
+    }
+    
+    // 初始化
     renderQuestion();
   </script>
 </body>

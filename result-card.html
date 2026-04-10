@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摄影师人格测试结果</title>
+  <style>
+    :root {
+      /* 暗黑+橙红配色方案 */
+      --bg-primary: #0d0d0d;
+      --bg-secondary: #1a1a1a;
+      --bg-card: #141414;
+      --bg-card-hover: #1e1e1e;
+      
+      --accent-orange: #ff6b35;
+      --accent-orange-light: #ff8c5a;
+      --accent-orange-dark: #e55a2b;
+      --accent-glow: rgba(255, 107, 53, 0.3);
+      
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --text-muted: #666666;
+      
+      --border-default: #2a2a2a;
+      --border-highlight: #ff6b35;
+      
+      --chart-fill: rgba(255, 107, 53, 0.2);
+      --chart-stroke: #ff6b35;
+      --chart-grid: #333333;
+      
+      --card-width: 400px;
+      --card-radius: 24px;
+      --font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family);
+      padding: 40px 20px;
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 40%);
+    }
+
+    .result-card {
+      width: var(--card-width);
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      padding: 36px;
+      border: 1px solid var(--border-default);
+      box-shadow: 
+        0 24px 80px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 107, 53, 0.1) inset;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-orange), var(--accent-orange-light));
+    }
+
+    /* 人物头像区域 */
+    .avatar-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+      opacity: 0.6;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.05); opacity: 0.4; }
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      position: relative;
+      z-index: 1;
+      border: 2px solid var(--border-highlight);
+    }
+
+    /* 摄影师类型标签 */
+    .type-tag {
+      margin-top: 16px;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 107, 53, 0.05));
+      border: 1px solid var(--accent-orange);
+      border-radius: 30px;
+      color: var(--accent-orange);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    /* 标题区域 */
+    .title-section {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .title {
+      color: var(--text-primary);
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* 维度展示 */
+    .dimensions-section {
+      margin-bottom: 28px;
+    }
+
+    .dimension-item {
+      margin-bottom: 16px;
+    }
+
+    .dimension-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .dimension-name {
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .dimension-value {
+      color: var(--accent-orange);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .dimension-bar {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dimension-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-orange-dark), var(--accent-orange));
+      border-radius: 4px;
+      transition: width 1s ease-out;
+      position: relative;
+    }
+
+    .dimension-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background: var(--accent-orange);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* 相机图标 */
+    .camera-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px;
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+
+    .camera-icon {
+      font-size: 36px;
+      filter: drop-shadow(0 0 8px var(--accent-glow));
+    }
+
+    .camera-text {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .camera-text strong {
+      color: var(--accent-orange);
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* 描述文本 */
+    .description {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.8;
+      text-align: center;
+      padding: 16px;
+      background: rgba(255, 107, 53, 0.05);
+      border-radius: 12px;
+      border-left: 3px solid var(--accent-orange);
+    }
+
+    /* 雷达图容器 */
+    .radar-section {
+      display: none; /* 备用，用进度条展示 */
+    }
+
+    /* 响应式 */
+    @media (max-width: 440px) {
+      .result-card {
+        width: 100%;
+        padding: 24px;
+      }
+      
+      .title {
+        font-size: 24px;
+      }
+      
+      .avatar-wrapper {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .avatar {
+        font-size: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="result-card">
+    <!-- 人物头像 -->
+    <div class="avatar-section">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring"></div>
+        <div class="avatar">📸</div>
+      </div>
+      <div class="type-tag">追光诗人</div>
+    </div>
+
+    <!-- 标题 -->
+    <div class="title-section">
+      <h1 class="title">光影捕手 · INFP</h1>
+      <p class="subtitle">摄影师人格类型</p>
+    </div>
+
+    <!-- 相机标识 -->
+    <div class="camera-section">
+      <span class="camera-icon">🎯</span>
+      <div class="camera-text">
+        <strong>Canon EOS R5</strong>
+        你的镜头选择
+      </div>
+    </div>
+
+    <!-- 维度进度条 -->
+    <div class="dimensions-section">
+      <div class="dimension-item">
+        <div class="dimension-header">
+          <span class="dimension-name">🌙 内向 · 外向</span>
+          <span class="dimension-value">内向 75%</span>
+        </div>
+        <div class="dimension-bar">
+          <div class="dimension-fill" style="width: 75%"></div>
+        </div>
+      </div>
+
+      <div class="dimension-item">
+        <div class="dimension-header">
+          <span class="dimension-name">🧠 理性 · 感性</span>
+          <span class="dimension-value">感性 82%</span>
+        </div>
+        <div class="dimension-bar">
+          <div class="dimension-fill" style="width: 82%"></div>
+        </div>
+      </div>
+
+      <div class="dimension-item">
+        <div class="dimension-header">
+          <span class="dimension-name">👁️ 观察 · 直觉</span>
+          <span class="dimension-value">直觉 68%</span>
+        </div>
+        <div class="dimension-bar">
+          <div class="dimension-fill" style="width: 68%"></div>
+        </div>
+      </div>
+
+      <div class="dimension-item">
+        <div class="dimension-header">
+          <span class="dimension-name">🎭计划 · 随性</span>
+          <span class="dimension-value">随性 55%</span>
+        </div>
+        <div class="dimension-bar">
+          <div class="dimension-fill" style="width: 55%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 描述 -->
+    <p class="description">
+      你善于捕捉瞬间的情感与氛围，用镜头书写诗意的视觉故事。喜欢在光影变化中寻找情绪的共鸣，作品往往充满感染力和艺术气息。
+    </p>
+  </div>
+</body>
+</html>
