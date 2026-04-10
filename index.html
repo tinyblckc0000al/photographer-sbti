@@ -19,14 +19,15 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 .option.selected{background:var(--accent)}
 .btn{width:100%;padding:16px;background:var(--accent);color:#fff;border:none;border-radius:12px;font-size:16px;cursor:pointer}
 .btn:disabled{background:#444;cursor:not-allowed}
+.btns{display:flex;gap:10px}
+.btns button{flex:1}
 .result{text-align:center}
 .result h2{color:var(--accent);font-size:24px;margin:16px 0}
 .result p{color:var(--muted);line-height:1.6;margin:16px 0}
-.diary{background:#ffeaa7;color:#333;padding:16px;border-radius:4px;margin:16px 0;transform:rotate(-1deg)}
+.diary{background:#ffeaa7;color:#333;padding:16px;border-radius:4px;margin:16px 0}
 .cam{background:#252525;padding:16px;border-radius:12px;margin:16px 0;border:1px solid var(--accent)}
 .cam-name{color:var(--accent);font-size:18px}
 .cam-roast{color:var(--muted);font-style:italic;font-size:14px}
-.icon{width:80px;height:80px;margin:0 auto 16px}
 </style>
 </head>
 <body>
@@ -38,50 +39,53 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 <div class="question" id="q"></div>
 <div class="options" id="o"></div>
 </div>
-<div style="display:flex;gap:10px"><button class="btn" onclick="prev()" style="flex:1;background:#444">上一题</button><button class="btn" id="b" onclick="next()" style="flex:1">下一题</button></div>
+<div class="btns">
+<button class="btn" onclick="prev()" style="background:#444">上一题</button>
+<button class="btn" id="b" onclick="next()">下一题</button>
+</div>
 </div>
 <div id="r" style="display:none" class="result"></div>
 </div>
 <script>
-let qs=[],ts={},a=[],i=0;
-fetch('data/questions.json').then(r=>r.json()).then(d=>{qs=d;loadTypes()});
-function loadTypes(){
-fetch('data/types.json').then(r=>r.json()).then(d=>{d.forEach(t=>ts[t.id]=t);render()})
+let qs=[],ts=[],a=[],idx=0;
+init();
+function init(){
+fetch('data/questions.json').then(r=>r.json()).then(d=>{qs=d;done()})
+function done(){
+fetch('data/types.json').then(r=>r.json()).then(d=>{ts=d;render()})
 }
 function render(){
-if(!qs.length)return;
-document.getElementById('c').innerText=i+1;
-document.getElementById('q').innerText=qs[i].question;
-let o=document.getElementById('o');
-o.innerHTML='';
-(qs[i].options||[]).forEach((opt,j)=>{
+if(!qs.length||!ts.length)return;
+document.getElementById('c').innerText=idx+1;
+document.getElementById('q').innerText=qs[idx].question;
+let el=document.getElementById('o');
+el.innerHTML='';
+(qs[idx].options||[]).forEach((opt,j)=>{
 let div=document.createElement('div');
-div.className='option'+(a[i]===j?' selected':'');
+div.className='option'+(a[idx]===j?' selected':'');
 div.innerText=opt.text||opt;
-div.onclick=()=>{a[i]=j;render()};
-o.appendChild(div);
+div.onclick=()=>{a[idx]=j;render()};
+el.appendChild(div);
 });
-document.getElementById('b').disabled=a[i]===undefined;
-document.getElementById('b').innerText=i<23?'下一题':'看结果';
+document.getElementById('b').disabled=a[idx]===undefined;
+document.getElementById('b').innerText=idx<23?'下一题':'看结果';
 }
-function prev(){if(i>0){i--;render()}}
-function next(){if(i<23){i++;render()}else{console.log('answers:',a);show()}}
+function prev(){if(idx>0){idx--;render()}}
+function next(){if(idx<23){idx++;render()}else show()}
 function show(){
-let s={};
-a.forEach((ans,qid)=>{
-let opt=qs[qid].options[ans];
+let sc={};
+a.forEach((ans,qi)=>{
+let opt=qs[qi].options[ans];
 if(opt&&opt.scoreType){
-let st=opt.scoreType;
-s[st]=(s[st]||0)+1;
+sc[opt.scoreType]=(sc[opt.scoreType]||0)+1;
 }
 });
-let max=0,res=ts[1];
-Object.keys(s).forEach(t=>{if(s[t]>max){max=s[t];res=ts.find(x=>x.shortDesc===t)||ts[0]}});
+let best=0,res=ts[0];
+Object.keys(sc).forEach(k=>{if(sc[k]>best){best=sc[k];res=ts.find(t=>t.shortDesc===k)||ts[0]}});
 document.getElementById('quiz').style.display='none';
 let r=document.getElementById('r');
 r.style.display='block';
-r.innerHTML=`<div class="card">
-<img class="icon" src="icons/${String(res.id).padStart(2,'0')}.svg">
+r.innerHTML=`<div class="card result">
 <h2>${res.name}</h2>
 <p>${res.fullDesc}</p>
 <div class="diary">${res.diary||'咔嚓'}</div>
