@@ -71,7 +71,10 @@ let s={};
 Object.keys(ts).forEach(k=>s[k]=0);
 a.forEach((ans,qid)=>{
 let opt=qs[qid].options[ans];
-if(opt&&opt.scoreType)s[opt.scoreType]=(s[opt.scoreType]||0)+1;
+if(opt&&opt.scoreType){
+let st=opt.scoreType;
+s[parseInt(st)]=(s[parseInt(st)]||0)+1;
+}
 });
 let max=0,res=ts[1];
 Object.keys(s).forEach(t=>{if(s[t]>max){max=s[t];res=ts[t]}});
