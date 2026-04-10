@@ -21,13 +21,6 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 .btn:disabled{background:#444;cursor:not-allowed}
 .btns{display:flex;gap:10px}
 .btns button{flex:1}
-.result{text-align:center}
-.result h2{color:var(--accent);font-size:24px;margin:16px 0}
-.result p{color:var(--muted);line-height:1.6;margin:16px 0}
-.diary{background:#ffeaa7;color:#333;padding:16px;border-radius:4px;margin:16px 0}
-.cam{background:#252525;padding:16px;border-radius:12px;margin:16px 0;border:1px solid var(--accent)}
-.cam-name{color:var(--accent);font-size:18px}
-.cam-roast{color:var(--muted);font-style:italic;font-size:14px}
 </style>
 </head>
 <body>
@@ -44,57 +37,50 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 <button class="btn" id="b" onclick="next()">下一题</button>
 </div>
 </div>
-<div id="r" style="display:none" class="result"></div>
 </div>
 <script>
-let qs=[],ts=[],a=[],idx=0;
-init();
-function init(){
-fetch('data/questions.json').then(r=>r.json()).then(d=>{qs=d;done()})
-function done(){
-fetch('data/types.json').then(r=>r.json()).then(d=>{ts=d;render()})
+var qs=[],ts=[],a=[],idx=0;
+load();
+function load(){
+fetch('data/questions.json').then(r=>r.json()).then(function(d){qs=d;loadTypes()})
+}
+function loadTypes(){
+fetch('data/types.json').then(r=>r.json()).then(function(d){ts=d;render()})
 }
 function render(){
-if(!qs.length||!ts.length)return;
+if(qs.length==0||ts.length==0)return;
 document.getElementById('c').innerText=idx+1;
 document.getElementById('q').innerText=qs[idx].question;
-let el=document.getElementById('o');
+var el=document.getElementById('o');
 el.innerHTML='';
-(qs[idx].options||[]).forEach((opt,j)=>{
-let div=document.createElement('div');
+var opts=qs[idx].options;
+for(var j=0;j<opts.length;j++){
+var div=document.createElement('div');
 div.className='option'+(a[idx]===j?' selected':'');
-div.innerText=opt.text||opt;
-div.onclick=()=>{a[idx]=j;render()};
+div.innerText=opts[j].text||opts[j];
+div.onclick=function(){a[idx]=j;render()};
 el.appendChild(div);
-});
+}
 document.getElementById('b').disabled=a[idx]===undefined;
 document.getElementById('b').innerText=idx<23?'下一题':'看结果';
 }
 function prev(){if(idx>0){idx--;render()}}
-function next(){if(idx<23){idx++;render()}else show()}
+function next(){if(idx<23){idx++;render()}else{show()}}
 function show(){
-let sc={};
-a.forEach((ans,qi)=>{
-let opt=qs[qi].options[ans];
+var sc={};
+for(var i=0;i<a.length;i++){
+if(a[i]!==undefined){
+var opt=qs[i].options[a[i]];
 if(opt&&opt.scoreType){
 sc[opt.scoreType]=(sc[opt.scoreType]||0)+1;
 }
-});
-let best=0,res=ts[0];
-Object.keys(sc).forEach(k=>{if(sc[k]>best){best=sc[k];res=ts.find(t=>t.shortDesc===k)||ts[0]}});
-document.getElementById('quiz').style.display='none';
-let r=document.getElementById('r');
-r.style.display='block';
-r.innerHTML=`<div class="card result">
-<h2>${res.name}</h2>
-<p>${res.fullDesc}</p>
-<div class="diary">${res.diary||'咔嚓'}</div>
-<div class="cam">
-<div class="cam-name">${res.camera}</div>
-<div class="cam-roast">${res.cameraRoast}</div>
-</div>
-<button class="btn" onclick="location.reload()">再测一次</button>
-</div>`;
+}
+}
+var best=0,res=ts[0];
+for(var k in sc){
+if(sc[k]>best){best=sc[k];res=ts.find(function(t){return t.shortDesc===k})||ts[0]}
+}
+document.getElementById('quiz').innerHTML='<div class="card result"><h2 style="color:var(--accent)">'+res.name+'</h2><p>'+res.fullDesc+'</p><div style="background:#ffeaa7;color:#333;padding:16px;border-radius:4px;margin:16px 0">'+(res.diary||'')+'</div><div style="background:#252525;padding:16px;border-radius:12px;margin:16px 0;border:1px solid var(--accent)"><div style="color:var(--accent)">'+res.camera+'</div><div style="color:var(--muted);font-style:italic">'+res.cameraRoast+'</div></div><button class="btn" onclick="location.reload()">再测一次</button></div>';
 }
 </script>
 </body>
