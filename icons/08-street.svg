@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <rect width="30" height="30" fill="#1a1a1a"/>
+  <!-- 人物剪影-低头看相机 -->
+  <rect x="11" y="8" width="5" height="5" fill="#2a2a2a"/>
+  <rect x="9" y="13" width="8" height="6" fill="#2a2a2a"/>
+  <!-- 手持相机 -->
+  <rect x="5" y="15" width="6" height="5" fill="#333"/>
+  <rect x="6" y="16" width="4" height="3" fill="#ff6b35"/>
+  <!-- 街道背景元素 -->
+  <rect x="16" y="12" width="2" height="8" fill="#333"/>
+  <rect x="19" y="10" width="2" height="10" fill="#333"/>
+  <rect x="22" y="14" width="2" height="6" fill="#333"/>
+  <rect x="25" y="12" width="2" height="8" fill="#333"/>
+  <!-- 地面 -->
+  <rect x="4" y="22" width="22" height="2" fill="#ff6b35"/>
+</svg>

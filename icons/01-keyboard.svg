@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <rect width="30" height="30" fill="#1a1a1a"/>
+  <!-- 键盘轮廓 -->
+  <rect x="6" y="12" width="18" height="12" fill="#2a2a2a"/>
+  <!-- 键盘按键行1 -->
+  <rect x="7" y="13" width="2" height="2" fill="#ff6b35"/>
+  <rect x="10" y="13" width="2" height="2" fill="#ff6b35"/>
+  <rect x="13" y="13" width="2" height="2" fill="#ff6b35"/>
+  <rect x="16" y="13" width="2" height="2" fill="#ff6b35"/>
+  <rect x="19" y="13" width="2" height="2" fill="#ff6b35"/>
+  <!-- 键盘按键行2 -->
+  <rect x="7" y="16" width="2" height="2" fill="#ff6b35"/>
+  <rect x="10" y="16" width="2" height="2" fill="#ff6b35"/>
+  <rect x="13" y="16" width="2" height="2" fill="#ff6b35"/>
+  <rect x="16" y="16" width="2" height="2" fill="#ff6b35"/>
+  <rect x="19" y="16" width="2" height="2" fill="#ff6b35"/>
+  <!-- 空格键 -->
+  <rect x="9" y="19" width="12" height="2" fill="#ff6b35"/>
+  <!-- 显示器 -->
+  <rect x="8" y="4" width="14" height="7" fill="#2a2a2a"/>
+  <rect x="9" y="5" width="12" height="5" fill="#0d0d0d"/>
+  <rect x="10" y="6" width="10" height="3" fill="#ff6b35"/>
+</svg>

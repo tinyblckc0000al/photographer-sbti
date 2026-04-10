@@ -123,7 +123,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>📷 摄影师人格测试</h1>
+    <h1><img src="icons/07-portrait.svg" alt="" style="vertical-align:middle;width:28px;height:28px;margin-right:8px;">摄影师人格测试</h1>
     <p class="subtitle">SBTI 摄影师版 · 15维度精准匹配</p>
     
     <div id="quiz">
@@ -302,7 +302,7 @@
       resultDiv.innerHTML = `
         <div class="card result-card">
           <div class="tag">${matchedType.shortDesc}</div>
-          <div class="result-title">📷 ${matchedType.name}</div>
+          <div class="result-title"><img src="icons/${matchedType.id.toString().padStart(2,'0')}.svg" alt="" style="vertical-align:middle;width:28px;height:28px;margin-right:8px;">${matchedType.name}</div>
           
           <div class="radar-container">
             ${radarSVG}
@@ -310,7 +310,7 @@
           
           <div class="result-camera">
             <div class="camera-label">最佳伴侣</div>
-            <div class="camera-name">📷 ${matchedType.camera}</div>
+            <div class="camera-name"><img src="icons/02-param.svg" alt="" style="vertical-align:middle;width:20px;height:20px;margin-right:6px;">${matchedType.camera}</div>
             <div class="camera-roast">"${matchedType.cameraRoast}"</div>
           </div>
           

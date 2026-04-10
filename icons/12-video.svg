@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <rect width="30" height="30" fill="#1a1a1a"/>
+  <!-- 摄像机轮廓 -->
+  <rect x="4" y="8" width="22" height="14" fill="#2a2a2a"/>
+  <!-- 镜头 -->
+  <rect x="7" y="10" width="8" height="8" fill="#333"/>
+  <rect x="8" y="11" width="6" height="6" fill="#ff6b35"/>
+  <!-- 屏幕 -->
+  <rect x="16" y="10" width="8" height="6" fill="#0d0d0d"/>
+  <rect x="17" y="11" width="6" height="4" fill="#ff6b35"/>
+  <!-- 录制灯 -->
+  <rect x="22" y="7" width="2" height="2" fill="#ff6b35"/>
+  <!-- 手柄 -->
+  <rect x="5" y="20" width="6" height="4" fill="#333"/>
+  <!-- 提手 -->
+  <rect x="14" y="5" width="6" height="3" fill="#333"/>
+</svg>

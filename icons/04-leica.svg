@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <rect width="30" height="30" fill="#1a1a1a"/>
+  <!-- Leica M标志外观 -->
+  <rect x="4" y="10" width="22" height="14" fill="#2a2a2a"/>
+  <!-- 镜头 -->
+  <rect x="9" y="11" width="12" height="12" fill="#333"/>
+  <rect x="10" y="12" width="10" height="10" fill="#0d0d0d"/>
+  <rect x="11" y="13" width="8" height="8" fill="#ff6b35"/>
+  <!-- 取景器小窗 -->
+  <rect x="20" y="8" width="4" height="4" fill="#333"/>
+  <rect x="21" y="9" width="2" height="2" fill="#ff6b35"/>
+  <!-- 红点装饰 -->
+  <rect x="20" y="22" width="3" height="3" fill="#ff6b35"/>
+  <!-- 顶盖线条 -->
+  <rect x="5" y="12" width="3" height="1" fill="#333"/>
+  <rect x="5" y="21" width="3" height="1" fill="#333"/>
+</svg>

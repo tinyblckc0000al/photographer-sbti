@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <rect width="30" height="30" fill="#1a1a1a"/>
+  <!-- 老式相机轮廓 -->
+  <rect x="5" y="10" width="20" height="14" fill="#2a2a2a"/>
+  <!-- 镜头 -->
+  <rect x="9" y="12" width="12" height="10" fill="#333"/>
+  <rect x="10" y="13" width="10" height="8" fill="#0d0d0d"/>
+  <rect x="11" y="14" width="8" height="6" fill="#ff6b35"/>
+  <!-- 取景器 -->
+  <rect x="18" y="6" width="5" height="5" fill="#333"/>
+  <rect x="19" y="7" width="3" height="3" fill="#ff6b35"/>
+  <!-- 皮革质感装饰 -->
+  <rect x="5" y="20" width="20" height="2" fill="#333"/>
+  <rect x="6" y="21" width="18" height="1" fill="#1a1a1a"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <rect width="30" height="30" fill="#1a1a1a"/>
+  <!-- 书本轮廓 -->
+  <rect x="4" y="6" width="16" height="18" fill="#2a2a2a"/>
+  <!-- 书脊 -->
+  <rect x="4" y="6" width="3" height="18" fill="#333"/>
+  <!-- 书页 -->
+  <rect x="7" y="8" width="10" height="14" fill="#0d0d0d"/>
+  <!-- 文字行 -->
+  <rect x="9" y="10" width="6" height="1" fill="#ff6b35"/>
+  <rect x="9" y="13" width="6" height="1" fill="#ff6b35"/>
+  <rect x="9" y="16" width="6" height="1" fill="#ff6b35"/>
+  <rect x="9" y="19" width="6" height="1" fill="#ff6b35"/>
+  <rect x="9" y="22" width="6" height="1" fill="#ff6b35"/>
+  <!-- 中画幅相机logo -->
+  <rect x="18" y="16" width="8" height="8" fill="#ff6b35"/>
+  <rect x="20" y="18" width="4" height="4" fill="#1a1a1a"/>
+</svg>

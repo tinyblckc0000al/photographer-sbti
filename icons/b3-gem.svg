@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <rect width="30" height="30" fill="#1a1a1a"/>
+  <!-- 星星-潜力 -->
+  <rect x="13" y="4" width="4" height="4" fill="#ff6b35"/>
+  <rect x="11" y="6" width="2" height="2" fill="#ff6b35"/>
+  <rect x="17" y="6" width="2" height="2" fill="#ff6b35"/>
+  <rect x="9" y="8" width="2" height="2" fill="#ff6b35"/>
+  <rect x="19" y="8" width="2" height="2" fill="#ff6b35"/>
+  <rect x="7" y="10" width="2" height="2" fill="#ff6b35"/>
+  <rect x="21" y="10" width="2" height="2" fill="#ff6b35"/>
+  <rect x="11" y="12" width="2" height="2" fill="#ff6b35"/>
+  <rect x="17" year="12" width="2" height="2" fill="#ff6b35"/>
+  <rect x="13" y="8" width="4" height="2" fill="#ff6b35"/>
+  <!-- 相机在中间 -->
+  <rect x="11" y="16" width="8" height="6" fill="#2a2a2a"/>
+  <rect x="12" y="17" width="6" height="4" fill="#ff6b35"/>
+  <!-- 光芒线 -->
+  <rect x="10" y="24" width="10" height="1" fill="#ff6b35"/>
+</svg>
