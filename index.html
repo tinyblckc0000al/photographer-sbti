@@ -108,9 +108,11 @@
     
     function showResult() {
       answers.forEach((ans, qid) => {
-        const typeScores = map.map[row => row[qid] || row[0];
+        const typeScores = map.map((row, idx) => {
+          return row[qid] === ans ? 1 : 0; // 如果用户选了"理想答案"，该人格加1分
+        });
         Object.keys(types).forEach((type, idx) => {
-          if (typeScores[idx] === ans + 1) scores[type]++;
+          scores[type] += typeScores[idx];
         });
       });
       let max = 0, result = 'minimalist';
