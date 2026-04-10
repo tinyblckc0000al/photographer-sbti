@@ -65,7 +65,7 @@ document.getElementById('b').disabled=a[i]===undefined;
 document.getElementById('b').innerText=i<23?'下一题':'看结果';
 }
 function prev(){if(i>0){i--;render()}}
-function next(){if(i<23){i++;render()}else show()}
+function next(){if(i<23){i++;render()}else{console.log('answers:',a);show()}}
 function show(){
 let s={};
 a.forEach((ans,qid)=>{
