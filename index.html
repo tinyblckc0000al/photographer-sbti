@@ -38,6 +38,7 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 <div class="question" id="q"></div>
 <div class="options" id="o"></div>
 </div>
+<button class="btn" onclick="prev()" style="margin-right:10px;background:#444">上一题</button>
 <button class="btn" id="b" onclick="next()">下一题</button>
 </div>
 <div id="r" style="display:none" class="result"></div>
@@ -64,6 +65,7 @@ o.appendChild(div);
 document.getElementById('b').disabled=a[i]===undefined;
 document.getElementById('b').innerText=i<23?'下一题':'看结果';
 }
+function prev(){if(i>0){i--;render()}}
 function next(){if(i<23){i++;render()}else show()}
 function show(){
 let s={};
