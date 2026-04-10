@@ -57,20 +57,27 @@ h1{text-align:center;margin:20px 0;font-size:28px}
 <div id="result" style="display:none"></div>
 </div>
 <script>
-const questions=[],types={};
-// Load data from data files
-fetch('data/questions.json').then(r=>r.json()).then(d=>{questions.push(...d);loadTypes()})
-function loadTypes(){
-fetch('data/types.json').then(r=>r.json()).then(d=>{d.forEach(t=>types[t.id]=t);renderQ()})
-}
+let allQuestions=[],allTypes={};
+// Load all data
+Promise.all([
+  fetch('data/questions.json').then(r=>r.json()),
+  fetch('data/questions_roast.json').then(r=>r.json()).catch(()=>[]),
+  fetch('data/types.json').then(r=>r.json()),
+  fetch('data/types_beginner.json').then(r=>r.json()).catch(()=>[])
+]).then(([q1,q2,t1,t2])=>{
+  allQuestions=[...q1,...(Array.isArray(q2)?q2:[])];
+  t1.forEach(t=>allTypes[t.id]=t);
+  t2.forEach(t=>allTypes[t.id]=t);
+  renderQ();
+});
 // Also load beginner types - merge after load
 let current=0,answers=[],mode='test';
 function switchTab(m){mode=m;current=0;answers=[];renderQ()}
 function renderQ(){
-if(!questions.length)return;
+if(!allQuestions.length)return;
 document.getElementById('cur').textContent=current+1;
-document.getElementById('tot').textContent=questions.length;
-const q=questions[current];
+document.getElementById('tot').textContent=allQuestions.length;
+const q=allQuestions[current];
 document.getElementById('question').textContent=q.question;
 const opts=document.getElementById('options');
 opts.innerHTML='';
@@ -96,8 +103,8 @@ const st=o.scoreType||o.type||'keyboards';
 scores[st]=(scores[st]||0)+(o.scoreValue||1);
 }
 });
-let max=0,result=types[1];
-Object.keys(scores).forEach(t=>{if(scores[t]>max){max=scores[t];result=types[t]}});
+let max=0,result=allTypes[1];
+Object.keys(scores).forEach(t=>{if(scores[t]>max){max=scores[t];result=allTypes[t]}});
 document.getElementById('quiz').style.display='none';
 const r=document.getElementById('result');
 r.style.display='block';
