@@ -1,0 +1,70 @@
+{
+  "icons": {
+    "1": "⌨️",
+    "2": "🧮",
+    "3": "📸",
+    "4": "💰",
+    "5": "📱",
+    "6": "🌅",
+    "7": "👸",
+    "8": "🏙️",
+    "9": "🏔️",
+    "10": "💼",
+    "11": "📷",
+    "12": "🎬",
+    "13": "😤",
+    "14": "📚",
+    "15": "🦾"
+  },
+  "diaryStyle": {
+    "container": "position: relative; width: 200px; padding: 16px; background: linear-gradient(135deg, #fff8e7 0%, #ffe4b5 100%); border-radius: 4px; box-shadow: 2px 3px 8px rgba(0,0,0,0.3); transform: rotate(-2deg); font-family: 'KaiTi', serif;",
+    "tape": "position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 20px; background: rgba(255,200,100,0.6); transform: rotate(-3deg);",
+    "content": "font-size: 14px; color: #333; line-height: 1.6; font-style: italic;",
+    "signature": "margin-top: 12px; font-size: 12px; color: #666; text-align: right;"
+  },
+  "shareCard": {
+    "layout": "width: 400px; background: linear-gradient(145deg, #1a1a1a 0%, #2d1810 100%); border-radius: 16px; padding: 24px; box-shadow: 0 8px 32px rgba(255,100,50,0.3);",
+    "header": "display: flex; align-items: center; gap: 12px; margin-bottom: 20px;",
+    "avatar": "width: 48px; height: 48px; border-radius: 50%; border: 2px solid #ff6b35;",
+    "title": "font-size: 24px; font-weight: bold; color: #fff;",
+    "badge": "display: inline-block; padding: 4px 12px; background: #ff6b35; color: #fff; border-radius: 12px; font-size: 12px; margin-top: 4px;",
+    "quote": "background: rgba(255,107,53,0.15); border-left: 4px solid #ff6b35; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0;",
+    "stats": "display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0;",
+    "statItem": "text-align: center; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px;",
+    "statValue": "font-size: 20px; font-weight: bold; color: #ff6b35;",
+    "statLabel": "font-size: 11px; color: #999; margin-top: 4px;",
+    "footer": "text-align: center; color: #666; font-size: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);"
+  },
+  "topQuote": {
+    "container": "background: linear-gradient(90deg, #ff6b35, #ff9f1c); padding: 20px 24px; border-radius: 12px; margin-bottom: 24px; position: relative; overflow: hidden;",
+    "text": "font-size: 22px; font-weight: 800; color: #fff; text-align: center; line-height: 1.4; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);",
+    "decoration": "position: absolute; font-size: 48px; opacity: 0.3;",
+    "left": "left: 16px; top: 8px;",
+    "right": "right: 16px; bottom: 8px;"
+  },
+  "painPoints": {
+    "1": "键盘敲得比快门多，帖子发了几百楼，照片没拍满一张内存卡",
+    "2": "参数调了半小时，回看照片差点睡着",
+    "3": "后期是什么？JPG直出就是我对CCD最后的尊重",
+    "4": "相机比照片贵， Leica快门声比成片更动听",
+    "5": "发朋友圈确实专业，但教客户用手机确实更赚钱",
+    "6": "追光少年，风雨无阻，日出日落修图到凌晨",
+    "7": "拍了一套又一套，女朋友还是没有",
+    "8": "决定性瞬间没拍到，决定性冲突拍了不少",
+    "9": "爬山累半死，发片五分钟，后续p图两小时",
+    "10": "什么活都接，什么钱都赚，什么风格都没有",
+    "11": "器材收藏专家，实战能力为0",
+    "12": "拍片五分钟，剪辑十小时，调色比玄学还玄",
+    "13": "我本可以系列，硬盘里一堆差一点",
+    "14": "纽摄倒背如流，出门只会Auto档",
+    "15": "铁手天下无敌，成片和喝酒手抖一样"
+  },
+  "colorPalette": {
+    "primary": "#ff6b35",
+    "secondary": "#ff9f1c",
+    "dark": "#1a1a1a",
+    "darkSecondary": "#2d1810",
+    "textLight": "#ffffff",
+    "textMuted": "#999999"
+  }
+}

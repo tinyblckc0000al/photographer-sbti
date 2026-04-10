@@ -1,0 +1,101 @@
+[
+  {
+    "id": 16,
+    "isRoast": true,
+    "question": "你最常被亲戚问什么？",
+    "options": [
+      { "text": "这相机多少钱？", "scoreType": "器材党" },
+      { "text": "帮我孙女拍个满月照呗", "scoreType": "社交" },
+      { "text": "你怎么不去考公务员", "scoreType": "实战" },
+      { "text": "这是相机？能打电话吗", "scoreType": "手机党" }
+    ]
+  },
+  {
+    "id": 17,
+    "isRoast": true,
+    "question": "你朋友圈发片后收到最多的评论是？",
+    "options": [
+      { "text": "拍得不如我手机", "scoreType": "扎心" },
+      { "text": "哇这相机真专业！", "scoreType": "器材党" },
+      { "text": "求修图参数", "scoreType": "社交" },
+      { "text": "......(已读不回)", "scoreType": "高冷" }
+    ]
+  },
+  {
+    "id": 18,
+    "isRoast": true,
+    "question": "你买相机时家人说什么？",
+    "options": [
+      { "text": "买这破玩意儿不如买辆车", "scoreType": "务实" },
+      { "text": "你会拍吗就买", "scoreType": "质疑" },
+      { "text": "又要吃土了是吧", "scoreType": "器材党" },
+      { "text": "......(默认已读)", "scoreType": "高冷" }
+    ]
+  },
+  {
+    "id": 19,
+    "isRoast": true,
+    "question": "修图修到凌晨三点你的内心OS是？",
+    "options": [
+      { "text": "我怎么又浪费了一晚上", "scoreType": "自嘲" },
+      { "text": "这图拯救一下还能发", "scoreType": "执念" },
+      { "text": "算了，毁灭吧，RAW在哪", "scoreType": "弃疗" },
+      { "text": "明天再修，我先刷会儿手机", "scoreType": "拖延" }
+    ]
+  },
+  {
+    "id": 20,
+    "isRoast": true,
+    "question": "你最怕别人说什么？",
+    "options": [
+      { "text": "你拍这个有什么用", "scoreType": "扎心" },
+      { "text": "你就是三分钟热度", "scoreType": "质疑" },
+      { "text": "手机拍拍就行了", "scoreType": "手机党" },
+      { "text": "帮我拍婚纱照呗不收费吧", "scoreType": "社交" }
+    ]
+  },
+  {
+    "id": 21,
+    "isRoast": true,
+    "question": "拍砸了，你第一时间甩锅给谁？",
+    "options": [
+      { "text": "天气不好，光线垃圾", "scoreType": "务实" },
+      { "text": "模特不会摆，浪费我时间", "scoreType": "执念" },
+      { "text": "相机对焦太慢", "scoreType": "器材党" },
+      { "text": "是我喝了酒手抖，不怪技术", "scoreType": "自嘲" }
+    ]
+  },
+  {
+    "id": 22,
+    "isRoast": true,
+    "question": "你的电脑硬盘里什么最多？",
+    "options": [
+      { "text": "未修的RAW和废片", "scoreType": "拖延" },
+      { "text": "LR预设和调色lut", "scoreType": "器材党" },
+      { "text": "摄影教程视频", "scoreType": "学习" },
+      { "text": "表情包和 memes", "scoreType": "自嘲" }
+    ]
+  },
+  {
+    "id": 23,
+    "isRoast": true,
+    "question": "别人看到你拍照时的第一反应？",
+    "options": [
+      { "text": "专业！帮我拍一张", "scoreType": "社交" },
+      { "text": "这相机多少钱", "scoreType": "器材党" },
+      { "text": "好装", "scoreType": "扎心" },
+      { "text": "哦", "scoreType": "高冷" }
+    ]
+  },
+  {
+    "id": 24,
+    "isRoast": true,
+    "question": "你买完新镜头后最常说什么？",
+    "options": [
+      { "text": "这就是最后一颗", "scoreType": "自嘲" },
+      { "text": "拍不好不是镜头问题", "scoreType": "执念" },
+      { "text": "我下次一定好好拍", "scoreType": "拖延" },
+      { "text": "这镜头真香", "scoreType": "器材党" }
+    ]
+  }
+]
