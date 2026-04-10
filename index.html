@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摄影师人格测试</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0d0d0d; color: #fff; min-height: 100vh; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 10px; font-size: 24px; }
+    .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 14px; }
+    .card { background: #1a1a1a; border-radius: 16px; padding: 24px; margin-bottom: 20px; border: 1px solid #333; }
+    .progress { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
+    .question { font-size: 18px; margin-bottom: 20px; line-height: 1.6; }
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option { background: #252525; padding: 16px; border-radius: 12px; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
+    .option:hover { border-color: #ff6b35; background: #2a2a2a; }
+    .option.selected { background: #ff6b35; }
+    .btn { width: 100%; padding: 16px; background: #ff6b35; color: white; border: none; border-radius: 12px; font-size: 16px; cursor: pointer; }
+    .btn:disabled { background: #444; cursor: not-allowed; }
+    .result-card { text-align: center; padding: 30px; }
+    .result-title { font-size: 28px; color: #ff6b35; margin-bottom: 16px; }
+    .result-desc { font-size: 16px; line-height: 1.8; color: #aaa; margin-bottom: 24px; }
+    .result-camera { background: #252525; padding: 24px; border-radius: 12px; margin: 20px 0; border: 1px solid #ff6b35; }
+    .camera-name { font-size: 24px; color: #ff6b35; margin-bottom: 8px; }
+    .camera-roast { font-size: 15px; color: #888; font-style: italic; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📷 摄影师人格测试</h1>
+    <p class="subtitle">SBTI 摄影师版 · 看看你的镜头人格</p>
+    <div id="quiz">
+      <div class="card">
+        <div class="progress">问题 <span id="current">1</span> / <span id="total">10</span></div>
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+      </div>
+      <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>下一题</button>
+    </div>
+    <div id="result" style="display:none"></div>
+  </div>
+  <script>
+    const questions = [
+      { q: '你喜欢在什么时间段拍摄？', o: ['清晨/黄昏柔光', '正午强光', '夜晚灯火', '看情况'] },
+      { q: '外出带多少设备？', o: ['一个机身+镜头', '专业背包全套', '几件轻便装备', '看主题灵活'] },
+      { q: '什么场景让你想按快门？', o: ['几何/极简', '街头瞬间', '自然风光', '人物情绪'] },
+      { q: '最在意照片的哪个方面？', o: ['构图形式', '故事纪实', '情感表达', '技术完美'] },
+      { q: '后期修图风格？', o: ['极简冷淡', '真实质感', '胶片复古', '电影感'] },
+      { q: '买相机最看重什么？', o: ['便携', '画质', '颜值', '品牌'] },
+      { q: '最常拍什么？', o: ['建筑街道', '人物', '风景', '日常'] },
+      { q: '朋友让你拍照，你会？', o: ['直接答应', '选择性拍', '找理由拒', '看关系'] },
+      { q: '看到别人用手机拍照.', o: ['无所谓', '想教他', '暗自嫌弃', '跟风'] },
+      { q: '拍久了感觉？', o: ['还想拍', '累但值', '麻木', '想换设备'] }
+    ];
+    const types = {
+      minimalist: { name: '极简主义摄影师', desc: '追求简洁纯粹，善于发现日常中的秩序之美。', camera: 'Ricoh GR III', roast: '理财产品实锤了，停产比发售快，但你真的买得到吗？' },
+      documentary: { name: '纪实摄影师', desc: '用镜头记录真实，捕捉生活中的瞬间与故事。', camera: 'Fujifilm X100VI', roast: '溢价比黄牛跑得还快，现在下单等到退休能拿到货。' },
+      portrait: { name: '人像摄影师', desc: '捕捉人物情绪与灵魂，挖掘内心世界。', camera: 'Sony A7M4', roast: '屏幕祖传黄绿屏，但没人Care，因为你是拍人的。' },
+      landscape: { name: '风光摄影师', desc: '追逐光影与自然，用镜头诠释大自然的壮美。', camera: 'Canon R5', roast: '散热灾难，但拍风光谁会让你连续拍8K 40分钟啊？' },
+      street: { name: '街头摄影师', desc: '在城市中寻找瞬间，用快门捕捉城市的脉动。', camera: 'Leica Q3', roast: '德味满满，价格也满满，花钱买标.jpg' },
+      fashion: { name: '时尚摄影师', desc: '引领潮流，创造视觉冲击力的时尚大片。', camera: 'Hasselblad X2D', roast: '北欧性冷淡风，钱包也性冷淡了。' },
+      fineArt: { name: '艺术摄影师', desc: '将摄影视为艺术创作，表达个人审美与理念。', camera: 'Phase One', roast: '一套辆车，你确认这是相机不是理财产品？' },
+      wildlife: { name: '野生动物摄影师', desc: '在野外等待时机，捕捉动物最自然的状态。', camera: 'Nikon Z9', roast: '打鸟神器，但你拍的是楼下的麻雀。' }
+    };
+    const scores = {};
+    Object.keys(types).forEach(k => scores[k] = 0);
+    const map = [
+      [0,0,0,0, 1,1,1,1], // minimalist
+      [2,1,2,1, 2,2,2,1], // documentary
+      [1,2,1,0, 1,0,1,2], // portrait
+      [2,1,2,2, 1,2,1,1], // landscape
+      [1,2,1,2, 2,1,2,1], // street
+      [0,1,1,2, 1,2,0,2], // fashion
+      [1,0,2,2, 0,1,1,1], // fineArt
+      [2,1,1,1, 2,1,2,1]  // wildlife
+    ];
+    let current = 0;
+    let answers = [];
+    
+    function renderQuestion() {
+      document.getElementById('current').textContent = current + 1;
+      const q = questions[current];
+      document.getElementById('question').textContent = q.q;
+      const opts = document.getElementById('options');
+      opts.innerHTML = '';
+      q.o.forEach((txt, idx) => {
+        const div = document.createElement('div');
+        div.className = 'option' + (answers[current] === idx ? ' selected' : '');
+        div.textContent = txt;
+        div.onclick = () => selectOption(idx);
+        opts.appendChild(div);
+      });
+      document.getElementById('nextBtn').disabled = answers[current] === undefined;
+      document.getElementById('nextBtn').textContent = current < 9 ? '下一题' : '看结果';
+    }
+    
+    function selectOption(idx) {
+      answers[current] = idx;
+      renderQuestion();
+    }
+    
+    function nextQuestion() {
+      if (current < 9) { current++; renderQuestion(); }
+      else { showResult(); }
+    }
+    
+    function showResult() {
+      answers.forEach((ans, qid) => {
+        const typeScores = map.map[row => row[qid] || row[0];
+        Object.keys(types).forEach((type, idx) => {
+          if (typeScores[idx] === ans + 1) scores[type]++;
+        });
+      });
+      let max = 0, result = 'minimalist';
+      Object.keys(scores).forEach(type => {
+        if (scores[type] > max) { max = scores[type]; result = type; }
+      });
+      const r = types[result];
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('result').innerHTML = '<div class="card result-card">' +
+        '<div class="result-title">📷 ' + r.name + '</div>' +
+        '<div class="result-desc">' + r.desc + '</div>' +
+        '<div class="result-camera">' +
+          '<div class="camera-name">📷 ' + r.camera + '</div>' +
+          '<div class="camera-roast">"' + r.roast + '"</div>' +
+        '</div>' +
+        '<button class="btn" onclick="location.reload()">再测一次</button>' +
+      '</div>';
+    }
+    
+    renderQuestion();
+  </script>
+</body>
+</html>
